@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .nav-links{
+    @apply text-base cursor-pointer hover:text-green-200 hover:border-green-100 hover:border-b-2
+  }
+}
