@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function App() {
+const App = () => {
   const [advice, setAdvice] = useState("");
 
   async function getAdvice() {
@@ -12,6 +12,13 @@ function App() {
   useEffect(function () {
     getAdvice();
   }, []);
+
+  const handleCopyClick = () => {
+    navigator.clipboard
+      .writeText(advice)
+      .then(() => alert("Advice copied to clipboard!"))
+      .catch((error) => console.error("Failed to copy advice:", error));
+  };
 
   return (
     <div className="flex justify-center h-screen items-center">
@@ -28,13 +35,19 @@ function App() {
             Get advice
           </button>
           <p className="mt-3">
-            Click <span className="text-blue-500 font-bold">Here</span> to copy
-            advice
+            Click{" "}
+            <span
+              onClick={handleCopyClick}
+              className="text-blue-500 font-bold cursor-pointer"
+            >
+              Here
+            </span>
+            <span>""</span>to copy advice
           </p>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default App;
